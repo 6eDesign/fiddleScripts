@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Messenger.js &amp; Other Stuff</title>
+  <style>
+    label { 
+        display: block;
+        font-weight: bold;
+    }
+
+    a { 
+         display: block; 
+        font-weight: bold;
+        text-decoration:none;
+    }
+
+    input[type=text] { 
+         width: 100%;   
+    }
+
+    div { margin-bottom: 10px; }
+
+    .msgContainer { 
+        display: none;    
+    }
+
+    .msgContainer.visible { 
+        display: inherit;   
+    }
+  </style>
+</head>
+<body>
+  <a href="#msgContainerSingle" class="msgTrigger" data-tmpl="contactPreferences" data-spid='123'>Message ABC Testing</a>
+  <a href="#msgContainerSingle" class="msgTrigger" data-tmpl="youAreHired" data-spid='456'>Message ARC Testing Service</a>
+  <section class="msgContainer" id="msgContainerSingle">
+      <form id="singleMessageForm">
+          <h3>Message <span data-simplebind="msg.pro.companyName"></span></h3>
+          <hr/>
+          <p>
+              <strong>Send an email to: </strong>
+              <span data-simplebind="msg.pro.companyName"></span>
+          </p>
+          <div>
+              <label for="msgSingleSubject">Subject Line</label>
+              <input type="text" id="msgSingleSubject" name="subject" type="text" />
+          </div>
+          <div>
+              <label for="msgSingleMessage">Message</label>
+              <textarea name="message" id="msgSingleMessage" cols="80" rows="15"></textarea>
+          </div>
+          <button class="sendMessageBtn" data-form="#singleMessageForm">Send Message</button>
+      </form>
+  </section>
+  <section class="msgContainer" id="msgContainerMultiple">
+      
+  </section>
+</body>
+<script src='https://code.jquery.com/jquery-1.8.3.min.js'></script>
+<script src='https://www.homeadvisor.com/js/consumer/onlinebooking/components/simpleBind.js'></script>
+<script src='utilities/util.js'></script>
+<script src='utilities/serializeObject.js'></script>
+<script src='components/messaging/messenger.js'></script>
+<script src='components/messaging/messenger.config.js'></script>
+<script src='components/messaging/messenger.proResults.js'></script>
+</html>
