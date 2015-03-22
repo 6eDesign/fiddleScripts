@@ -45,6 +45,7 @@ var messenger = (function(w,d,$,pub){
           , container = state.containers[containerID];
         
         openMessage(container,opts); 
+        return false;
     }; 
     
     var openMessage = function(container,opts) { 

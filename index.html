@@ -3,6 +3,13 @@
   <meta charset="UTF-8">
   <title>Messenger.js &amp; Other Stuff</title>
   <style>
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    body { padding: 0; min-height: 100%; margin: 0; }
     label { 
         display: block;
         font-weight: bold;
@@ -17,8 +24,11 @@
     input[type=text] { 
          width: 100%;   
     }
+    textarea { 
+      max-width: 100%;
+    }
 
-    div { margin-bottom: 10px; }
+    form div { margin-bottom: 10px; }
 
     .msgContainer { 
         display: none;    
@@ -28,35 +38,64 @@
         display: inherit;   
     }
   </style>
+  <link rel="stylesheet" href="https://www.homeadvisor.com/stylesheets/consumer/srpath/onlinebooking/bookingOverlay.min.css">
 </head>
 <body>
-  <a href="#msgContainerSingle" class="msgTrigger" data-tmpl="contactPreferences" data-spid='123'>Message ABC Testing</a>
-  <a href="#msgContainerSingle" class="msgTrigger" data-tmpl="youAreHired" data-spid='456'>Message ARC Testing Service</a>
-  <section class="msgContainer" id="msgContainerSingle">
-      <form id="singleMessageForm">
-          <h3>Message <span data-simplebind="msg.pro.companyName"></span></h3>
-          <hr/>
-          <p>
-              <strong>Send an email to: </strong>
-              <span data-simplebind="msg.pro.companyName"></span>
-          </p>
-          <div>
-              <label for="msgSingleSubject">Subject Line</label>
-              <input type="text" id="msgSingleSubject" name="subject" type="text" />
-          </div>
-          <div>
-              <label for="msgSingleMessage">Message</label>
-              <textarea name="message" id="msgSingleMessage" cols="80" rows="15"></textarea>
-          </div>
-          <button class="sendMessageBtn" data-form="#singleMessageForm">Send Message</button>
-      </form>
-  </section>
+
+  <a href="#messagePro" class="btn">Message Pro</a>
+
+  
   <section class="msgContainer" id="msgContainerMultiple">
       
   </section>
+
+
+  <!-- START OVERLAY SECTION -->
+  <div class="feaux-colorbox-container borderBox">
+    <div class="feaux-colorbox-border hw-accelerated" id="feauxColorboxFrame">
+      <a id="closeButton" href="#" title="close" class="hw-accelerated"><img src="https://www.homeadvisor.com/images/consumer/theme/icons/close_icon.png"/></a>
+      <div id="overlayLoadingScreen"></div>
+      <div class="overlays">
+        <!-- BEGIN messagePro overlay -->
+        <div class="row overlay feaux-colorbox ib" data-feauxcolorboxid="messagePro" id="messagePro">
+          <div class="col">
+            <h1 data-simplebind="msg.heading"></h1>
+          </div>
+          <div class="col">
+            <a href="#msgContainerSingle" class="msgTrigger" data-tmpl="contactPreferences" data-spid='123'>Message ABC Testing</a>
+            <a href="#msgContainerSingle" class="msgTrigger" data-tmpl="youAreHired" data-spid='456'>Message ARC Testing Service</a>
+            <section class="msgContainer" id="msgContainerSingle">
+              <form id="singleMessageForm">
+                <h3>Message <span data-simplebind="msg.pro.companyName"></span></h3>
+                <hr/>
+                <p>
+                    <strong>Send an email to: </strong>
+                    <span data-simplebind="msg.pro.companyName"></span>
+                </p>
+                <div>
+                    <label for="msgSingleSubject">Subject Line</label>
+                    <input type="text" id="msgSingleSubject" name="subject" type="text" />
+                </div>
+                <div>
+                    <label for="msgSingleMessage">Message</label>
+                    <textarea name="message" id="msgSingleMessage" cols="80" rows="15"></textarea>
+                </div>
+                <button class="sendMessageBtn" data-form="#singleMessageForm">Send Message</button>
+              </form>
+            </section>
+          </div>
+        </div>
+        <!-- /END messagePro overlay -->
+      </div>
+    </div>
+  </div>
+  <!-- END OF OVERLAY SECTION -->
+
 </body>
 <script src='https://code.jquery.com/jquery-1.8.3.min.js'></script>
+  
 <script src='https://www.homeadvisor.com/js/consumer/onlinebooking/components/simpleBind.js'></script>
+<script src='https://www.homeadvisor.com/js/bower_components/css-modal/css-modal.js'></script>
 <script src='utilities/util.js'></script>
 <script src='utilities/serializeObject.js'></script>
 <script src='components/messaging/messenger.js'></script>
